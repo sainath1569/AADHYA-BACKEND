@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+pymongo
+python-dotenv
+googletrans==4.0.0-rc1
+openai-whisper
+requests
