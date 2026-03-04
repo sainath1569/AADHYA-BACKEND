@@ -20,6 +20,7 @@ from engines.recommendation_engine import (
 from services.database_service import save_log
 
 app = FastAPI(title="AI Early Risk Detection & Triage System")
+
 @app.post("/analyze", response_model=SymptomResponse)
 def analyze(request: SymptomRequest):
 
@@ -85,13 +86,6 @@ def analyze(request: SymptomRequest):
 from services.database_service import save_log
 
 # Utils
-from utils.parser import parse_symptoms_input
-
-
-app = FastAPI(
-    title="AI Early Risk Detection & Triage System",
-    version="1.0"
-)
 
 # -------------------------------
 # CORS (React Frontend)
