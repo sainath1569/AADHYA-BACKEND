@@ -4,4 +4,7 @@ pymongo
 python-dotenv
 googletrans==4.0.0-rc1
 openai-whisper
+transformers
+torch
+google-generativeai
 requests

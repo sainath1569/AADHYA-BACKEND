@@ -11,7 +11,7 @@ GEMINI_API_KEY = "AIzaSyB0DWK9hwiP4WzZuJABcYjxxMhxBlGUmkA"
 genai.configure(api_key=GEMINI_API_KEY)
 
 # Use the latest model
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel('gemini-2.5-flash')
 
 def generate_explanation(symptoms_text, risk_score, classification, recommendation, predicted_condition, confidence, contributors):
     """
