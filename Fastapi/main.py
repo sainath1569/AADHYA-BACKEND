@@ -7,6 +7,8 @@ from routes.auth_routes import router as auth_router
 # Schemas
 from schemas.request_schema import SymptomRequest
 from schemas.response_schema import SymptomResponse
+from services.pdf_service import generate_pdf_report
+from fastapi.responses import StreamingResponse
 
 # AI Modules
 from models.disease_classifier import classify_disease
@@ -188,3 +190,46 @@ def root():
     except Exception as e:
         print("❌ ERROR:", str(e))
         raise HTTPException(status_code=500, detail="Internal Server Error")
+
+@app.post("/analyze/download")
+def analyze_and_download(request: SymptomRequest):
+
+    # ---- reuse your existing analyze logic ----
+    disease_result = classify_disease(request.text)
+    risk_score, contributors = calculate_risk(request.text, disease_result)
+
+    classification = get_classification(risk_score)
+    recommendation = get_recommendation(classification)
+
+    predicted_condition = disease_result.get("predicted_condition", "Unknown")
+    confidence = disease_result.get("overall_confidence", 50)
+
+    explanation = generate_explanation(
+        symptoms_text=request.text,
+        risk_score=risk_score,
+        classification=classification,
+        recommendation=recommendation,
+        predicted_condition=predicted_condition,
+        confidence=confidence,
+        contributors=contributors
+    )
+
+    response_data = {
+        "risk_score": risk_score,
+        "classification": classification,
+        "recommendation": recommendation,
+        "predicted_condition": predicted_condition,
+        "confidence": confidence,
+        "contributors": contributors,
+        "explanation": explanation
+    }
+
+    pdf_buffer = generate_pdf_report(response_data)
+
+    return StreamingResponse(
+        pdf_buffer,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": "attachment; filename=arogya_raksha_report.pdf"
+        }
+    )

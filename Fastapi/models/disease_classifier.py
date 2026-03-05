@@ -13,62 +13,6 @@ classifier = pipeline(
 print("✅ Advanced Model loaded successfully!")
 
 # Medical conditions to predict
-CONDITIONS = [
-    # Cardiac conditions
-    "Heart Attack / Myocardial Infarction",
-    "Angina / Chest Pain",
-    "Arrhythmia / Irregular Heartbeat",
-    "Hypertensive Crisis",
-
-    # Neurological
-    "Stroke / Brain Attack",
-    "Migraine",
-    "Seizure",
-    "Concussion / Head Injury",
-    "Meningitis",
-
-    # Respiratory
-    "Asthma Attack",
-    "Pneumonia",
-    "COVID-19",
-    "Bronchitis",
-    "Respiratory Infection",
-    "Tuberculosis",
-
-    # Gastrointestinal
-    "Appendicitis",
-    "Food Poisoning",
-    "Gastritis / Acid Reflux",
-    "Stomach Ulcer",
-    "Gallbladder Attack",
-
-    # Metabolic / Endocrine
-    "Diabetes Emergency",
-    "Hypoglycemia",
-    "Hyperglycemia",
-    "Dehydration",
-
-    # Allergies & Immune
-    "Allergic Reaction",
-    "Anaphylaxis",
-
-    # Infection / Fever related
-    "Viral Fever",
-    "Dengue Fever",
-    "Malaria",
-    "Typhoid Fever",
-    "Influenza / Flu",
-
-    # Mental health
-    "Anxiety Attack",
-    "Panic Attack",
-    "Stress Reaction",
-
-    # General
-    "Muscle Strain / Injury",
-    "General Fatigue / Weakness",
-    "Unknown Medical Condition"
-]
 
 # Risk levels to predict
 RISK_LEVELS = [
